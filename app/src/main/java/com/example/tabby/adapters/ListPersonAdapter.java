@@ -65,7 +65,7 @@ public class ListPersonAdapter extends RecyclerView.Adapter<ListPersonAdapter.Vi
             textViewName.setText(person.getNamePerson());
             textViewCountryName.setText(person.getCountry().getNameCountry());
             String url = person.getCountry().getFlagUrl(person.getCountry().getCodeCountry());
-            Picasso.get().load(url).fit().into(imageViewFlag);
+            Picasso.get().load(url).into(imageViewFlag);
         }
     }
 }

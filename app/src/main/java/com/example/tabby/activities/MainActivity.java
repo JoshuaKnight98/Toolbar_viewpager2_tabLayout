@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
@@ -40,9 +41,12 @@ public class MainActivity extends AppCompatActivity implements CreatePerson {
         tabLayout.addTab(tabLayout.newTab().setText("List"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
-        pagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), getLifecycle());
+        pagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), getLifecycle(), tabLayout.getTabCount());
 
         viewPager2.setAdapter(pagerAdapter);
+
+        viewPager2.setCurrentItem(LISTFRAGMENT);
+        viewPager2.setCurrentItem(FORMFRAGMENT);
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -73,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements CreatePerson {
 
     @Override
     public void createPerson(Person person) {
+
         ListFragment fragment = (ListFragment) getSupportFragmentManager().getFragments().get(LISTFRAGMENT);
         fragment.addPerson(person);
         viewPager2.setCurrentItem(LISTFRAGMENT);

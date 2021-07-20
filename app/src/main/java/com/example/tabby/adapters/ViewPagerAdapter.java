@@ -16,10 +16,11 @@ import java.util.ArrayList;
 
 public class ViewPagerAdapter extends FragmentStateAdapter {
 
-    private ArrayList<Fragment> listFragments = new ArrayList<>();
+    private int numberOfTabs;
 
-    public ViewPagerAdapter(FragmentManager fragmentManager, Lifecycle lifecycle) {
+    public ViewPagerAdapter(FragmentManager fragmentManager, Lifecycle lifecycle, int tabs) {
         super(fragmentManager, lifecycle);
+        numberOfTabs = tabs;
     }
 
 
@@ -39,10 +40,7 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return 2;
+        return numberOfTabs;
     }
 
-    public void addFragment(Fragment fragment){
-        listFragments.add(fragment);
-    }
 }
